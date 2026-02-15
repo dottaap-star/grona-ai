@@ -1,3 +1,4 @@
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { RouteProvider } from "@/providers/router-provider";
@@ -36,6 +37,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || "GTM-NXBH5J6M"} />
             <body className={cx(inter.variable, "bg-primary antialiased")}>
                 <RouteProvider>
                     <Theme>{children}</Theme>
