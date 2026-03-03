@@ -1,6 +1,6 @@
-import LandingPage02 from "@/landing-page-02";
+import ContactContent from "./contact-content";
 
 export default function ContactPage() {
-    return <LandingPage02 />;
+    return <ContactContent />;
 }
 

@@ -14,8 +14,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://grona.ai"),
-    title: "Grona — Turn more visitors into customers",
-    description: "Improve your website by chatting with AI. Chat-first CRO tool that helps you convert more visitors—no coding required.",
+    title: "Grona: Turn more visitors into customers",
+    description: "Improve your website by chatting with AI. Chat-first CRO tool that helps you convert more visitors, no coding required.",
     icons: {
         icon: [
             { url: "https://grona.ai/g_favicon.svg", type: "image/svg+xml" },

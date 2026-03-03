@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentPropsWithRef, FC } from "react";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Link01 } from "@untitledui/icons";
 import { Carousel } from "@/components/application/carousel/carousel-base";
 import { BadgeGroup } from "@/components/base/badges/badge-groups";
@@ -192,7 +193,7 @@ const HeroSection = () => {
                     </p>
 
                     <div className="mt-8 flex items-center gap-3 md:mt-12">
-                        <img src={withBasePath("/assets/images/blogs/author.jpeg")} className="size-12 rounded-full object-cover" alt="Grona Team" />
+                        <Image src={withBasePath("/assets/images/blogs/author.jpeg")} width={48} height={48} className="size-12 rounded-full object-cover" alt="Grona Team" />
                         <div>
                             <p className="text-md font-semibold text-primary">Grona Team</p>
                             <p className="text-md text-tertiary">Published 14 Jan 2026</p>
@@ -200,10 +201,12 @@ const HeroSection = () => {
                     </div>
                 </div>
 
-                <img
+                <Image
                     className="mt-16 h-100 w-full object-cover md:mt-0 md:h-180 md:w-140 md:flex-shrink-0"
                     src={withBasePath("/assets/images/blogs/feature-cro.png")}
                     alt="CRO Software Dashboard"
+                    width={560}
+                    height={720}
                 />
             </div>
 
@@ -297,10 +300,12 @@ const HeroSection = () => {
                                 </div>
 
                                 <figure className="my-8">
-                                    <img
+                                    <Image
                                         className="h-60 w-full rounded-lg object-cover md:h-96"
                                         src={tool.imageUrl}
                                         alt={`${tool.name} homepage`}
+                                        width={1200}
+                                        height={384}
                                         onError={(e) => {
                                             // Fallback for missing images
                                             e.currentTarget.src = "/assets/images/blogs/feature-cro.png";
@@ -413,7 +418,7 @@ const ArticleCard = ({ article }: { article: Article }) => (
     <article className="flex flex-col gap-4">
         <div className="relative">
             <a href={article.href} className="w-full" tabIndex={-1}>
-                <img src={article.thumbnailUrl} alt={article.title} className="aspect-[1.5] w-full rounded-lg object-cover" />
+                <Image src={article.thumbnailUrl} alt={article.title} width={600} height={400} className="aspect-[1.5] w-full rounded-lg object-cover" />
             </a>
         </div>
 
