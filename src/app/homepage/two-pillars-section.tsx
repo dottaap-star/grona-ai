@@ -43,7 +43,7 @@ export const TwoPillarsSection = () => {
                             muted
                             playsInline
                             className="h-auto w-full"
-                            src="/assets/images/homepage/Grona_research.mp4"
+                            src="/assets/images/homepage/Grona_Research.mp4"
                         />
                     </div>
                 </div>
