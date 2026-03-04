@@ -6,15 +6,12 @@ import {
     ArrowRight,
     ArrowUpRight,
     CheckCircle,
-    FileSearch02,
     Stars02,
     FlipBackward,
     Link01,
     SearchRefraction,
     MessageChatCircle,
-    Monitor02,
     BarChartSquare02,
-    RefreshCcw05,
 } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { Form } from "@/components/base/form/form";
@@ -310,14 +307,11 @@ const GronaOptimize = () => {
 // ---------------------------------------------------------------------------
 
 const loopSteps = [
-    { number: 1, title: "Add your URL", description: "Grona loads your actual website", icon: Link01 },
-    { number: 2, title: "Ask the AI to analyze", description: "Structure, copy, CTAs, competitors, traffic, ads", icon: SearchRefraction },
-    { number: 3, title: "Review insights", description: "See what's broken and what to test first", icon: FileSearch02 },
-    { number: 4, title: "Chat to edit", description: "Describe changes in plain English, see them live", icon: MessageChatCircle },
-    { number: 5, title: "Preview variation", description: "Compare your variation against the original", icon: Monitor02 },
-    { number: 6, title: "Deploy test", description: "A/B test or full rollout, one click", icon: FlipBackward },
-    { number: 7, title: "Track results", description: "Real-time dashboard with winner detection", icon: BarChartSquare02 },
-    { number: 8, title: "Repeat", description: "Ask the AI what to optimize next", icon: RefreshCcw05 },
+    { number: 1, title: "Paste your URL", description: "Grona loads your actual website", icon: Link01 },
+    { number: 2, title: "Research", description: "Ask the AI to analyze your site, competitors, and traffic", icon: SearchRefraction },
+    { number: 3, title: "Edit", description: "Chat to make changes and create variants", icon: MessageChatCircle },
+    { number: 4, title: "Test", description: "Deploy an A/B test with one click", icon: FlipBackward },
+    { number: 5, title: "Learn", description: "Track results and find your next optimization", icon: BarChartSquare02 },
 ];
 
 const TheFullLoop = () => {
@@ -331,118 +325,56 @@ const TheFullLoop = () => {
                     </p>
                 </div>
 
-                {/* Desktop: horizontal stepper */}
-                <div className="mx-auto mt-12 hidden max-w-6xl md:mt-16 lg:block">
-                    {/* Top row: steps 1-4 */}
-                    <div className="relative flex items-start justify-between">
-                        {/* Connecting line */}
-                        <div className="absolute top-5 right-0 left-0 mx-16 h-0.5 bg-border-secondary" />
-                        {loopSteps.slice(0, 4).map((step) => {
+                {/* Desktop: horizontal flow with arrows */}
+                <div className="mx-auto mt-12 hidden max-w-5xl md:mt-16 md:block">
+                    <div className="flex items-start justify-center gap-3">
+                        {loopSteps.map((step, i) => {
                             const Icon = step.icon;
                             return (
-                                <div key={step.number} className="relative z-10 flex w-56 flex-col items-center text-center">
-                                    <div className="flex size-10 items-center justify-center rounded-full bg-brand-primary text-sm font-semibold text-featured-icon-light-fg-brand">
-                                        {step.number}
+                                <div key={step.number} className="flex items-start gap-3">
+                                    <div className="flex w-36 flex-col items-center text-center lg:w-44">
+                                        <div className="flex size-10 items-center justify-center rounded-full bg-brand-solid text-sm font-semibold text-white">
+                                            {step.number}
+                                        </div>
+                                        <Icon className="mt-3 size-5 text-tertiary" />
+                                        <h3 className="mt-2 text-md font-semibold text-primary">{step.title}</h3>
+                                        <p className="mt-1 text-sm text-tertiary">{step.description}</p>
                                     </div>
-                                    <Icon className="mt-3 size-5 text-tertiary" />
-                                    <h3 className="mt-2 text-md font-semibold text-primary">{step.title}</h3>
-                                    <p className="mt-1 text-sm text-tertiary">{step.description}</p>
-                                </div>
-                            );
-                        })}
-                    </div>
-
-                    {/* Connector from row 1 to row 2 */}
-                    <div className="flex justify-end pr-28">
-                        <div className="h-12 w-0.5 bg-border-secondary" />
-                    </div>
-
-                    {/* Bottom row: steps 5-8 (reversed for visual flow) */}
-                    <div className="relative flex items-start justify-between">
-                        {/* Connecting line */}
-                        <div className="absolute top-5 right-0 left-0 mx-16 h-0.5 bg-border-secondary" />
-                        {[...loopSteps.slice(4)].reverse().map((step) => {
-                            const Icon = step.icon;
-                            const isRepeat = step.number === 8;
-                            return (
-                                <div key={step.number} className="relative z-10 flex w-56 flex-col items-center text-center">
-                                    <div
-                                        className={cx(
-                                            "flex size-10 items-center justify-center rounded-full text-sm font-semibold",
-                                            isRepeat
-                                                ? "bg-brand-solid text-white"
-                                                : "bg-brand-primary text-featured-icon-light-fg-brand",
-                                        )}
-                                    >
-                                        {step.number}
-                                    </div>
-                                    <Icon className={cx("mt-3 size-5", isRepeat ? "text-featured-icon-light-fg-brand" : "text-tertiary")} />
-                                    <h3 className={cx("mt-2 text-md font-semibold", isRepeat ? "text-brand-secondary" : "text-primary")}>
-                                        {step.title}
-                                    </h3>
-                                    <p className={cx("mt-1 text-sm", isRepeat ? "text-brand-tertiary" : "text-tertiary")}>
-                                        {step.description}
-                                    </p>
-                                    {isRepeat && (
-                                        <p className="mt-2 text-xs font-medium text-brand-secondary">
-                                            &#8635; Back to step 2
-                                        </p>
+                                    {i < loopSteps.length - 1 && (
+                                        <ArrowRight className="mt-3 size-4 shrink-0 text-fg-quaternary" />
                                     )}
                                 </div>
                             );
                         })}
                     </div>
-
-                    {/* Connector from row 2 back to step 2 */}
-                    <div className="flex justify-start pl-28">
-                        <div className="h-8 w-0.5 border-l-2 border-dashed border-brand-solid" />
-                    </div>
+                    <p className="mt-6 text-center text-sm text-brand-secondary">
+                        Then repeat from Research. Every cycle compounds.
+                    </p>
                 </div>
 
-                {/* Mobile: vertical timeline */}
-                <div className="mx-auto mt-12 max-w-md lg:hidden">
-                    {loopSteps.map((step, index) => {
+                {/* Mobile: vertical flow */}
+                <div className="mx-auto mt-12 flex flex-col items-center gap-2 md:hidden">
+                    {loopSteps.map((step, i) => {
                         const Icon = step.icon;
-                        const isRepeat = step.number === 8;
-                        const isLast = index === loopSteps.length - 1;
-
                         return (
-                            <div key={step.number} className="flex gap-4">
-                                {/* Timeline rail */}
-                                <div className="flex flex-col items-center">
-                                    <div
-                                        className={cx(
-                                            "flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold",
-                                            isRepeat
-                                                ? "bg-brand-solid text-white"
-                                                : "bg-brand-primary text-featured-icon-light-fg-brand",
-                                        )}
-                                    >
-                                        {step.number}
-                                    </div>
-                                    {!isLast && <div className="w-0.5 flex-1 bg-border-secondary" />}
+                            <div key={step.number} className="flex flex-col items-center gap-2">
+                                <div className="flex size-10 items-center justify-center rounded-full bg-brand-solid text-sm font-semibold text-white">
+                                    {step.number}
                                 </div>
-
-                                {/* Content */}
-                                <div className={cx("pb-8", isLast && "pb-0")}>
-                                    <div className="flex items-center gap-2">
-                                        <Icon className={cx("size-4", isRepeat ? "text-featured-icon-light-fg-brand" : "text-tertiary")} />
-                                        <h3 className={cx("text-md font-semibold", isRepeat ? "text-brand-secondary" : "text-primary")}>
-                                            {step.title}
-                                        </h3>
-                                    </div>
-                                    <p className={cx("mt-1 text-sm", isRepeat ? "text-brand-tertiary" : "text-tertiary")}>
-                                        {step.description}
-                                    </p>
-                                    {isRepeat && (
-                                        <p className="mt-1 text-xs font-medium text-brand-secondary">
-                                            &#8635; Back to step 2
-                                        </p>
-                                    )}
+                                <div className="flex items-center gap-2">
+                                    <Icon className="size-4 text-tertiary" />
+                                    <h3 className="text-md font-semibold text-primary">{step.title}</h3>
                                 </div>
+                                <p className="max-w-xs text-center text-sm text-tertiary">{step.description}</p>
+                                {i < loopSteps.length - 1 && (
+                                    <ArrowRight className="size-4 rotate-90 text-fg-quaternary" />
+                                )}
                             </div>
                         );
                     })}
+                    <p className="mt-4 text-sm text-brand-secondary">
+                        Then repeat from Research. Every cycle compounds.
+                    </p>
                 </div>
             </div>
         </section>

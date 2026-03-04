@@ -25,34 +25,29 @@ const tiers: Tier[] = [
     {
         name: "Starter",
         href: "https://app.grona.ai/signup",
-        description: "Perfect for small teams testing AI optimization.",
+        monthlyPrice: 149,
+        description: "For teams getting started with AI-powered optimization.",
     },
     {
         name: "Growth",
         highlighted: true,
-        badge: "Popular",
+        badge: "Most Popular",
         href: "https://app.grona.ai/signup",
-        monthlyPrice: 25,
+        monthlyPrice: 299,
         description: "For growing businesses scaling conversion efforts.",
     },
     {
-        name: "Scale",
-        href: "https://app.grona.ai/signup",
-        monthlyPrice: 40,
-        description: "Advanced features for high-traffic websites.",
-    },
-    {
-        name: "Enterprise",
+        name: "Agency",
         canChatToSales: true,
         href: "/demo",
-        description: "Custom solutions for large organizations.",
+        monthlyPrice: 999,
+        description: "For agencies and teams managing multiple brands.",
     },
 ];
 
 const getDisplayPrice = (tier: Tier, billingPeriod: "monthly" | "annually"): { label: string; subtext: string } => {
     if (!tier.monthlyPrice) {
-        if (tier.canChatToSales) return { label: "Custom", subtext: "" };
-        return { label: "Free", subtext: "" };
+        return { label: "Custom", subtext: "" };
     }
 
     if (billingPeriod === "monthly") {
@@ -61,92 +56,64 @@ const getDisplayPrice = (tier: Tier, billingPeriod: "monthly" | "annually"): { l
 
     // Annual: 2 months free = pay for 10 months, show per-month equivalent
     const annualPerMonth = (tier.monthlyPrice * 10) / 12;
-    return { label: `$${annualPerMonth.toFixed(2)}`, subtext: "/mo" };
+    return { label: `$${annualPerMonth.toFixed(0)}`, subtext: "/mo" };
 };
 
 type Section = { name: string; features: { name: string; tooltip: { title: string; description: string }; tiers: Record<string, boolean | string> }[] };
 
 const sections: Section[] = [
     {
-        name: "Optimization Power",
+        name: "Core Limits",
         features: [
             {
-                name: "Active campaigns",
+                name: "Websites",
                 tooltip: {
-                    title: "Concurrent optimizations",
-                    description: "The number of optimization experiments you can run at the same time.",
+                    title: "Connected websites",
+                    description: "The number of websites you can connect and optimize simultaneously.",
                 },
-                tiers: { Starter: "1", Growth: "3", Scale: "10", Enterprise: "Unlimited" },
+                tiers: { Starter: "1", Growth: "5", Agency: "10 workspaces" },
             },
             {
-                name: "Monthly pageviews",
+                name: "Active tests",
                 tooltip: {
-                    title: "Traffic allowance",
-                    description: "The total monthly pageviews supported by your plan.",
+                    title: "Concurrent experiments",
+                    description: "The number of A/B tests you can run at the same time.",
                 },
-                tiers: { Starter: "1k", Growth: "15k", Scale: "30k", Enterprise: "Unlimited" },
+                tiers: { Starter: "5", Growth: "Unlimited", Agency: "Unlimited" },
             },
         ],
     },
     {
-        name: "AI Agents & Generators",
+        name: "Analytics & AI",
         features: [
             {
-                name: "Primary analysis capability",
+                name: "Analytics",
                 tooltip: {
-                    title: "Optimization intelligence",
-                    description: "The depth of AI-driven analysis used to surface optimization opportunities.",
+                    title: "Analytics depth",
+                    description: "The level of reporting and insights available for your experiments.",
                 },
                 tiers: {
-                    Starter: "Basic issue detection",
-                    Growth: "Drop-off pattern analysis",
-                    Scale: "Full multi-agent optimization loop",
-                    Enterprise: "Dedicated AI agents",
+                    Starter: "Basic analytics",
+                    Growth: "Advanced analytics",
+                    Agency: "Advanced analytics",
                 },
             },
             {
-                name: "Variant generation",
+                name: "AI agents",
                 tooltip: {
-                    title: "AI variant creation",
-                    description: "The types of variants the AI can generate for experiments.",
+                    title: "AI optimization agents",
+                    description: "Dedicated AI agents that continuously analyze and optimize your experiments.",
                 },
                 tiers: {
                     Starter: false,
-                    Growth: "Copy/CTA generator",
-                    Scale: "Copy + Layout + Offer variations",
-                    Enterprise: "Custom AI model fine-tuning",
-                },
-            },
-            {
-                name: "Monthly AI credits",
-                tooltip: {
-                    title: "AI processing allowance",
-                    description: "Credits consumed during analysis, generation, optimization loops, and personalization.",
-                },
-                tiers: { Starter: "500", Growth: "1500", Scale: "3500", Enterprise: "Unlimited" },
-            },
-        ],
-    },
-    {
-        name: "Personalization",
-        features: [
-            {
-                name: "Personalization level",
-                tooltip: {
-                    title: "Targeted experiences",
-                    description: "The sophistication of audience segmentation and personalization.",
-                },
-                tiers: {
-                    Starter: "None",
-                    Growth: "Basic (new/returning)",
-                    Scale: "Advanced (UTM, Geo, Device, Behavioral)",
-                    Enterprise: "Predictive + custom segments",
+                    Growth: false,
+                    Agency: "Dedicated agents",
                 },
             },
         ],
     },
     {
-        name: "Integrations + Support",
+        name: "Integrations & Support",
         features: [
             {
                 name: "Integrations",
@@ -155,36 +122,21 @@ const sections: Section[] = [
                     description: "Supported integrations for analytics, CRM, and product workflows.",
                 },
                 tiers: {
-                    Starter: "Visual no-code editor",
-                    Growth: "GA4 + Clarity + HubSpot",
-                    Scale: "GA4 + Clarity + HubSpot",
-                    Enterprise: "All integrations",
+                    Starter: "Standard",
+                    Growth: "Standard",
+                    Agency: "Custom integrations",
                 },
             },
             {
-                name: "Support level",
+                name: "Support",
                 tooltip: {
-                    title: "Response times",
+                    title: "Support level",
                     description: "Support availability and response time targets by plan.",
                 },
                 tiers: {
-                    Starter: "Email (72h)",
-                    Growth: "Priority email/chat (24-48h)",
-                    Scale: "Priority chat (<12h)",
-                    Enterprise: "SLA + priority support",
-                },
-            },
-            {
-                name: "Account management",
-                tooltip: {
-                    title: "Success support",
-                    description: "Additional success resources and account management options.",
-                },
-                tiers: {
-                    Starter: false,
-                    Growth: false,
-                    Scale: "Multi-device consistency",
-                    Enterprise: "Dedicated account manager",
+                    Starter: "Email support",
+                    Growth: "Priority support",
+                    Agency: "White-glove support",
                 },
             },
         ],
@@ -199,8 +151,8 @@ const Link = ({ href, children }: { href: string; children: ReactNode }) => (
 
 const faqsExtended: { question: string; answer: ReactNode; icon: typeof Heart }[] = [
     {
-        question: "Is the free tier really free?",
-        answer: "Yes. The Starter plan is free forever. 1 campaign, up to 1,000 pageviews per month, no credit card required, no time limit. You get full access to the core optimization workflow.",
+        question: "Is there a free trial?",
+        answer: "Yes. Every plan includes a 30-day free trial with full access. No credit card required. If you don’t upgrade after 30 days, your account pauses but all your data is preserved.",
         icon: File05,
     },
     {
@@ -209,25 +161,20 @@ const faqsExtended: { question: string; answer: ReactNode; icon: typeof Heart }[
         icon: SwitchHorizontal01,
     },
     {
-        question: "What happens when I hit my pageview limit?",
-        answer: "Your active experiments pause, but all your data and results are preserved. You can upgrade to resume testing immediately, or wait until your limit resets at the start of your next billing cycle.",
+        question: "What happens when my trial ends?",
+        answer: "Your experiments pause, but all your data and results are preserved. Choose a plan to resume testing immediately. No work is lost.",
         icon: SlashCircle01,
     },
     {
-        question: "Do I need to upgrade to see results?",
-        answer: "No. The free Starter plan includes full analytics and result tracking for your campaign. Paid plans unlock more concurrent campaigns, higher traffic limits, and advanced AI features like variant generation and personalization.",
-        icon: Heart,
-    },
-    {
-        question: "What’s included in Enterprise?",
-        answer: "Unlimited campaigns, unlimited pageviews, dedicated AI agents, custom model fine-tuning, predictive personalization, all integrations, a dedicated account manager, and SLA-backed priority support. Pricing is custom based on your needs.",
+        question: "What’s included in the Agency plan?",
+        answer: "10 workspaces, unlimited tests, custom integrations, dedicated AI agents, and white-glove support. Ideal for agencies managing optimization across multiple client brands.",
         icon: CreditCardRefresh,
     },
     {
         question: "How does Grona compare to VWO or Optimizely on price?",
         answer: (
             <>
-                VWO starts at $199/mo. Optimizely starts at $36K/yr. Grona starts free and paid plans begin at $25/mo. You get AI-powered research, variant generation, and A/B testing in one tool. <Link href="/compare/vwo">See the full comparison</Link>.
+                VWO starts at $199/mo. Optimizely starts at $36K/yr. Grona starts at $149/mo and includes AI-powered research, variant generation, and A/B testing in one tool. <Link href="/compare/vwo">See the full comparison</Link>.
             </>
         ),
         icon: SwitchHorizontal01,
@@ -244,9 +191,9 @@ const PricingLargeTable01 = () => {
                 <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
                     <span className="text-sm font-semibold text-brand-secondary md:text-md">Pricing</span>
 
-                    <h1 className="mt-3 text-display-md font-semibold text-primary md:text-display-lg">Start free. Scale when ready.</h1>
+                    <h1 className="mt-3 text-display-md font-semibold text-primary md:text-display-lg">Simple pricing. Try free for 30 days.</h1>
                     <p className="mt-4 text-lg text-tertiary md:mt-6 md:text-xl">
-                        VWO starts at $199/mo. Optimizely starts at $36K/yr. Grona starts free.
+                        VWO starts at $199/mo. Optimizely starts at $36K/yr. Grona starts at $149.
                     </p>
 
 
@@ -364,7 +311,7 @@ const PricingLargeTable01 = () => {
                                     <span className="sr-only">Feature by plans</span>
                                 </th>
                                 {tiers.map((tier) => (
-                                    <th key={tier.name} className="w-[18%] px-6 pt-0 pb-4 text-left text-xl font-semibold text-primary" scope="col">
+                                    <th key={tier.name} className="w-[24%] px-6 pt-0 pb-4 text-left text-xl font-semibold text-primary" scope="col">
                                         <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
                                             {tier.name}
                                             {tier.badge && (
@@ -408,7 +355,7 @@ const PricingLargeTable01 = () => {
                                     <tr>
                                         <th
                                             className={cx(index > 0 ? "pt-10" : "pt-0", "px-6 pb-4 text-left text-sm font-semibold text-brand-secondary")}
-                                            colSpan={5}
+                                            colSpan={4}
                                             scope="colgroup"
                                         >
                                             {section.name}
@@ -457,6 +404,14 @@ const PricingLargeTable01 = () => {
                             ))}
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <div className="mx-auto max-w-container px-4 pb-16 md:px-8 md:pb-24">
+                <div className="flex items-center justify-center">
+                    <span className="inline-flex items-center rounded-full bg-[#f5a623]/15 px-5 py-2.5 text-sm font-semibold text-[#f5a623]">
+                        30 day free trial offered on all plans
+                    </span>
                 </div>
             </div>
         </section>
