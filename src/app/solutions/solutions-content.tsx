@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ShoppingBag01, Code02 } from "@untitledui/icons";
+import { ArrowRight, ShoppingBag01, Code02, Building07 } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 
@@ -18,6 +18,13 @@ const verticals = [
             "Optimize trial-to-paid conversions, landing page performance, and pricing page layout without engineering tickets.",
         href: "/for/saas",
         icon: Code02,
+    },
+    {
+        title: "Agencies",
+        description:
+            "Deliver CRO results for clients without hiring developers. Manage multiple sites from one account.",
+        href: "/for/agencies",
+        icon: Building07,
     },
 ];
 

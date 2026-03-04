@@ -7,6 +7,7 @@ import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-ic
 import { SandboxUrlForm } from "@/components/marketing/sandbox-url-form";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { YouTubeHeroVideo } from "@/app/homepage/youtube-hero-video";
+import { agenciesData } from "./agencies/data";
 import { ecommerceData } from "./ecommerce/data";
 import { saasData } from "./saas/data";
 
@@ -53,6 +54,7 @@ export interface VerticalPageData {
 }
 
 const dataMap = {
+    agencies: agenciesData,
     ecommerce: ecommerceData,
     saas: saasData,
 } as const;

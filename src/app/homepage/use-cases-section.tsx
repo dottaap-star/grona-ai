@@ -17,7 +17,7 @@ const useCases = [
     {
         title: "Agencies",
         description: "Deliver CRO results for clients without hiring developers. Manage multiple sites from one account.",
-        href: "/solutions",
+        href: "/for/agencies",
         icon: Building07,
     },
 ];

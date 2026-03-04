@@ -2,12 +2,14 @@ import type { FC } from "react";
 import {
     BarChart07,
     BookClosed,
+    Building07,
     ClockRefresh,
     Code02,
     Dataflow01,
     FileSearch02,
     LayersThree01,
     LifeBuoy01,
+    Mail01,
     MessageChatSquare,
     Monitor04,
     ShoppingBag01,
@@ -73,6 +75,7 @@ export const headerNav: HeaderNavItem[] = [
                 items: [
                     { label: "E-commerce", href: "/for/ecommerce", description: "Increase AOV and reduce cart abandonment", icon: ShoppingBag01 },
                     { label: "SaaS", href: "/for/saas", description: "Optimize trial-to-paid and feature adoption", icon: MessageChatSquare },
+                    { label: "Agencies", href: "/for/agencies", description: "CRO results across your client portfolio", icon: Building07 },
                 ],
             },
             {
@@ -100,6 +103,7 @@ export const headerNav: HeaderNavItem[] = [
                 items: [
                     { label: "About Us", href: "/about-us", description: "The team behind Grona", icon: Users01 },
                     { label: "Book a Demo", href: "/demo", description: "30-minute walkthrough for your business", icon: FileSearch02 },
+                    { label: "Contact", href: "/contact", description: "Get in touch with the team", icon: Mail01 },
                 ],
             },
         ],
@@ -125,6 +129,7 @@ export const footerNav: NavGroup[] = [
         items: [
             { label: "E-commerce", href: "/for/ecommerce" },
             { label: "SaaS", href: "/for/saas" },
+            { label: "Agencies", href: "/for/agencies" },
             { label: "All Solutions", href: "/solutions" },
             { label: "Case Studies", href: "/case-studies" },
         ],
@@ -141,6 +146,7 @@ export const footerNav: NavGroup[] = [
         label: "Company",
         items: [
             { label: "About Us", href: "/about-us" },
+            { label: "Contact", href: "/contact" },
             { label: "Grona vs VWO", href: "/compare/vwo" },
             { label: "Grona vs Optimizely", href: "/compare/optimizely" },
             { label: "Google Optimize Alt", href: "/compare/google-optimize" },
